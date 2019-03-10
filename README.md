@@ -1,38 +1,60 @@
-Elma
+Elma_UDP
 ===
 
-Elma is an event loop and process manager for embedded and reactive systems. Elma is structured as a C++ library of classes on top of which you build your own C++ project. It keeps track of processes, finite state machines, events, and communication channels, executing them at specified frequencies. Elma was developed as part of the University of Washington's [ECE P 520 course](https://github.com/klavins/ECEP520) on advanced embedded systems programming. More information on how Elma was designed can be found in the links below:
-- [Event loop management](https://github.com/klavins/ECEP520/tree/master/week_6)
-- [Events and finite state machines](https://github.com/klavins/ECEP520/tree/master/week_7)
-- [HTTP in event loops](https://github.com/klavins/ECEP520/blob/master/week_8)
+Elma is an event loop and process manager for embedded and reactive systems. It keeps track of processes, finite state machines, events, and communication channels, executing them at specified frequencies. Currently, processes talk to each other via events.
+
+Goal
+----
+
+The ultimate goal of this project Elma_UDP, is to facilitate processes communication using UDP/IP. UDP is a lightweight, no congestion control, higher speed communication protocol for devices over an ethernet and /or internet. It provides sending and receiving of data between two hosts in a connectionless manner.
+
+My contributions
+------
+
+In this project, I will create separate C++ classes for server and client and object of these classes will be used by the processes to reach out each other depending upon the application. I will also make the server and client use Json messages for their communication because it is ubiquitously used in networked systems. 
+
+Upon completion...
+------
+
+I will be able to understand how UDP/IP works and become proficient in using C++. As a first time programmer in C++, this project will help me enhance my understanding of various C++ concepts like classes, polymorphihsm, inheritance etc. Also, because of wide variety of applications of UDP/IP in the field of IoT, this project will broaden my knowledge about IoT features, the area which I am really interested to venture.
+
+Resources
+====
+
+- Elma
+- C socket libraries 
+        - sys/types.h
+        - sys/socket.h
+        - netdb.h
+        - netinet/in.h
+
+Milestones
+====
+Below is the table of milestones I have set to complete this project.
+
+|Milestone                                          | Date   |
+|:---                                               | :---:  |
+|1. Understand steps involved in UDP/IP             |03.10.19|
+|2. Write basic class for sever and client          |03.12.19|
+|3. Incorporate json as content of communication    |03.14.19|
+|4. Implement in elma                               |03.20.19|
+|5. API documentation                               |03.22.19|
+
 
 Installation
 ===
 
-The source code for Elma [is on Github](https://github.com/klavinslab/elma).
+The source code for Elma_UDP [is on Github](https://github.com/charuari/elma_UDP).
 
 From Dockerhub
 ---
 
-To get started, you will need a C++ build environment. We have provided one with the Docker container `elma`, which you can use as follows:
-
-    git clone https://github.com/klavinslab/elma.git
-    cd elma
-    docker run -v $PWD:/source -it klavins/elma:latest bash
-    make
+To get started, you will need a C++ build environment to compile.
+    git clone https://github.com/charuari/elma_UDP.git
+    docker run -v $PWD:/source -it klavins/ecep520:cppenv-json bash
+    make 
     examples/bin/basic
-
-From the Dockerfile
----
-
-You can also build the docker environment, described in env/Dockerfile, yourself, with the following commands:
-
-    git clone https://github.com/klavinslab/elma.git
-    cd elma
-    docker build -t myelma .
-    docker run -v $PWD:/source -it myelma bash
-    make
-    examples/bin/basic
+    
 
 Manual Installation
 ---
@@ -43,13 +65,10 @@ To install Elma without using Docker, you will need to install the following too
 - [Doxygen](http://www.doxygen.nl/)
 - [Google Test](https://github.com/google/googletest)
 - Neils Lohmann's JSON library: https://github.com/nlohmann/json
-- [My fork](https://github.com/klavins/cpp-httplib.git) of [yhirose](https://github.com/yhirose)'s HTTP library
 
 Usage
 ===
-See the examples in the `examples` directory for how to build new event loops with Elma.
 
-License
-===
+Coming soon
 
-This software is open source and uses the MIT license. Details can be found [here](https://github.com/klavinslab/elma).
+
