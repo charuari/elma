@@ -23,10 +23,10 @@ Resources
 
 - Elma
 - C socket libraries 
-        - sys/types.h
-        - sys/socket.h
-        - netdb.h
-        - netinet/in.h
+    - sys/types.h
+    - sys/socket.h
+    - netdb.h
+    - netinet/in.h
 
 Milestones
 ====
