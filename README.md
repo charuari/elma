@@ -59,15 +59,15 @@ From Dockerhub
 To get started, you will need a C++ build environment to compile.
 - git clone https://github.com/charuari/elma_TCP.git
 - docker run -v $PWD:/source -it klavins/elma:latest bash
-- cd elma_TCP
-    - cd final_string
-        - make 
-        - test/bin/test_server &
-        - test/bin/test_client
-    - cd final_json
-        - make 
-        - test/bin/test_server &
-        - test/bin/test_client 
+- cd final_string
+    - make 
+    - test/bin/test_server &
+    - test/bin/test_client
+- cd final_json
+    - make 
+    - test/bin/test_server &
+    - test/bin/test_client 
+    
 
 Manual Installation
 ---
