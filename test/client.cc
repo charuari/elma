@@ -28,9 +28,13 @@ namespace {
           });
         }
 
-        // Note: If we don't sleep for a while, then the main thread will complete,
-        // killing the children threads started in c.get.
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        // Use manager's handy waiting feature to wait until all responses
+        // are returned. 
+        Manager m;
+        m.init().run([&](){ 
+            usleep(10000);
+            return c.num_responses() != 3;
+        });
 
         ASSERT_EQ(3,c.num_responses());
         c.process_responses();
@@ -59,7 +63,7 @@ namespace {
         GetTester p;
         m.schedule(p,1_ms)
          .init()
-         .run(1_s);
+         .run([&](){ return !p.got_response; });
     }
 
 }

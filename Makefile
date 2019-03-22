@@ -1,5 +1,5 @@
 #Compilers
-CC          := g++ -std=c++14
+CC          := g++ -std=c++14 -Wno-psabi
 DGEN        := doxygen
 
 #The Target Binary Program
@@ -25,7 +25,7 @@ SOURCES     := $(wildcard $(SRCDIR)/*.cc)
 OBJECTS     := $(patsubst %.cc, $(BUILDDIR)/%.o, $(notdir $(SOURCES)))
 
 #Defauilt Make
-all: directories $(TARGETDIR)/$(TARGET) tests example
+all: directories $(TARGETDIR)/$(TARGET) example
 	echo $(SOURCES) $(HEADERS)
 
 #Remake
@@ -36,8 +36,8 @@ directories:
 	@mkdir -p $(TARGETDIR)
 	@mkdir -p $(BUILDDIR)
 
-tests:
-	cd test && $(MAKE)
+#tests:
+	#cd test && $(MAKE)
 
 example:
 	cd examples && $(MAKE)
@@ -67,4 +67,3 @@ $(TARGETDIR)/$(TARGET): $(OBJECTS) $(HEADERS)
 #Compile
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT) $(HEADERS)
 	$(CC) $(CFLAGS) $(INC) -c -fPIC -o $@ $<
-

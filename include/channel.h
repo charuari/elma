@@ -6,7 +6,6 @@
 #include <json/json.h>
 
 #include "elma.h"
- 
 
 namespace elma {
 

@@ -28,17 +28,25 @@ namespace elma {
         public: 
 
         //! Default constructor
-        Manager() {}
+        Manager() : _running(false), _simulated_time(false) {}
         
         Manager& schedule(Process& process, high_resolution_clock::duration period);
         Manager& all(std::function<void(Process&)> f);
+
+        Manager& set_priority(Process& process, int priority);
+        Manager& sort_processes();
 
         Manager& init();
         Manager& start();
         Manager& update();        
         Manager& stop();
 
-        Manager& run(high_resolution_clock::duration);
+        Manager& use_simulated_time();
+        Manager& use_real_time();
+
+        Manager& run(high_resolution_clock::duration runtime);
+        Manager& run();
+        Manager& run(std::function<bool()> condition);
 
         //! Getter
         //! \return The time the Manager was most recently started
@@ -58,12 +66,18 @@ namespace elma {
         Client& client() { return _client; }
 
         private:
+
+        void update_elapsed_time();
+
+        const int Priority_min = -5, Priority_max = 15;
         vector<Process *> _processes;
         map<string, Channel *> _channels;
         map<string, vector<std::function<void(Event&)>>> event_handlers;
         high_resolution_clock::time_point _start_time;
         high_resolution_clock::duration _elapsed;
         Client _client;
+        bool _running;
+        bool _simulated_time;
 
     };
 

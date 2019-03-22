@@ -1,87 +1,172 @@
 Elma_TCP
 ===
 
-Elma is an event loop and process manager for embedded and reactive systems. It keeps track of processes, finite state machines, events, and communication channels, executing them at specified frequencies. Currently, processes talk to each other via events.
-
-Goal
-----
-
-The ultimate goal of this project Elma_TCP, is to facilitate processes communication using TCP/IP. 
-
-My contributions
-------
-
-In this project, I will create separate library for server and client and object of these classes will be used by the processes to reach out each other depending upon the application. I will also make the server and client use Json messages for their communication because it is ubiquitously used in networked systems. 
-
-Upon completion...
-------
-
-I will be able to understand how TCP/IP works and become proficient in using C++. As a first time programmer in C++, this project will help me enhance my understanding of various C++ concepts like classes, polymorphihsm, inheritance etc. Also, because of wide variety of applications of TCP/IP in the field of IoT, this project will broaden my knowledge about IoT features, the area which I am really interested to venture.
-
-Resources
-====
-
-- Elma
-- C socket libraries 
-    - sys/types.h
-    - sys/socket.h
-    - netdb.h
-    - netinet/in.h
-
-Milestones
-====
-Below is the table of milestones I have set to complete this project.
-
-|Milestone                                          | Date   |  Adjusted dates|
-|:---                                               | :---:  |   :---:        |
-|1. Understand steps involved in TCP/IP             |03.10.19|03.11.19        |
-|2. Write basic class for sever and client          |03.12.19|03.13.19        |
-|3. Incorporate json as content of communication    |03.14.19|03.15.19        |
-|4. Implement in elma                               |03.20.19|03.21.19        |
-|5. API documentation                               |03.22.19|03.22.19        |
-
-Accomplishments until 03.17.19
-===
-- Wrote C++ library for TCP server and client 
-- Passed test cases for server client communication using string messages
-    - Please find inside final_string directory.
-- Passed test cases for server client communication using json messages
-    - Please find under final_json directory.
+Elma is an event loop and process manager for embedded and reactive systems. It keeps track of processes, finite state machines, events, and communication channels, executing them at specified frequencies. Currently, processes talk to each other via events, this repository contains methods which describes how Json messages will be send back and forth between processes using TCP/IP protocol.
 
 Installation
 ===
 
 The source code for Elma_TCP [is on Github](https://github.com/charuari/elma_TCP).
 
+
 From Dockerhub
----
+===
 
 To get started, you will need a C++ build environment to compile.
 - git clone https://github.com/charuari/elma_TCP.git
 - docker run -v $PWD:/source -it klavins/elma:latest bash
-- cd final_string
-    - make 
-    - test/bin/test_server &
-    - test/bin/test_client
-- cd final_json
-    - make 
-    - test/bin/test_server &
-    - test/bin/test_client 
-    
+- make
 
-Manual Installation
+Execution
+===
+Example 1
 ---
+- examples/bin/test_pingserver &
+- examples/bin/test_pingclient
+- ps waux
 
-To install Elma without using Docker, you will need to install the following tools:
-- [gcc](https://gcc.gnu.org/) 4.9 or an equivalent C/C++ compiler that supports at least C++14
-- Make (if you want to use the makefile. Alternatively, you can use some other build manager)
-- [Doxygen](http://www.doxygen.nl/)
-- [Google Test](https://github.com/google/googletest)
-- Neils Lohmann's JSON library: https://github.com/nlohmann/json
+Example 2
+---
+- example/bin/test_server &
+- example/bin/test_client
+- ps waux
 
-Usage
+Design Process
+===
+To make Elma processes communication via TCP/IP, the first step I decided to do is to write a C++ library for TCP/IP server and client, so that instances of them can be used inside elma process derived class. The library I used is C socket library and many resources had things written in C. Hence, writing one in C++ felt mandatory in my case. The send and receive features of server and client involves byte packets and initially, I had designed them  for only strings and tested it with basic server client chat . Upon success, I had to tweek a little to make it suitable for json messages. Now, TCP/IP server client could send back and forth json messages.
+
+
+The goal of this project is to use this in Elma and I had decided to build two examples for it.
+    1. Simple client server ping
+    2. Temperature server
+
+Description
+===
+Simple client server ping
+---
+This was experimented to see how to integrate the so far stand-a-lone TCP/IP into Elma.
+
+Server and client were derived from abstract base class of Elma process and the update of client process will emit the json message(here, it's just an hello) which is send to be send to server. This event will be watched in the init method with appropriate handler.
+
+Similarly, the update of server process will receive the message from client and send back the current time and date as an acknowldegement of the established communication.
+
+Just printing the messages from server and client terminal help us to confirm the communication.
+
+Temperature server
+---
+Server and client are derived from Elma process base class.
+A helper class is used to generate random temperature and geographic co-ordinates which serves as data to be sent by client to server. This data will be sent from client process update method to server and it is received in the server process update method and the server sends back the count of the data received so far.
+
+The random data generator is set with srand(0), for the values to be determinant so that it can be tested in the server side if same data is received. Also, the number of updates of server process is tested for the number of acknowledgements sent back to client.
+
+Print statements from server and client terminals are used to confirm communication.
+
+Files
+===
+C++ library for TCP/IP:
+---
+- tcp_server.h
+- tcp_client.h
+- tcp_server.cc
+- tcp_client.cc
+
+Simple Client Server ping
+---
+- server_ping.h
+- client_ping.h
+- test_pingserver.cc
+- test_pingclient.cc
+
+Temperature Server
+---
+- data_generator.h
+- server_process.h
+- client_process.h
+- test_server.cc
+- test_client.cc
+
+File structure:
+===
+- src
+    - channel.cc
+    - client.cc
+    - manager.cc
+    - process.cc
+    - state_machine.cc
+    - state.cc
+    - tcp_client.cc
+    - tcp_server.cc
+
+- include
+    - channel.h
+    - client.h
+    - client_ping.h
+    - client_process.h
+    - data_generator.h
+    - elma.h
+    - event.h
+    - exceptions.h
+    - literals.h
+    - manager.h
+    - process.h
+    - server_ping.h
+    - server_process.h
+    - state.h
+    - state_machine.h
+    - tcp_client.h
+    - tcp_server.h
+    - transition.h
+
+- examples
+    - Makefile
+    - test_client.cc
+    - test_pingclient.cc
+    - test_pingserver.cc
+    - test_server.cc    
+
+Results
+===
+- Simple Client Server ping
+    - Please find the print statements of messages from client and server side.
+    - Client pings server with "Hello"
+    - Server responds with current date and time.
+
+- Temperature Server
+    - Please find the print statements of messages from client and server side.
+    - The length of the data sent from client is tested against the message received by server.
+    - Also, the number of updates of server process is tested against the number of acknowledgements sent by server to client.
+
+
+Acknowledgements
 ===
 
-Coming soon
+A great thanks to the following people!
+
+- Prof.Klavins - He was of a great help for giving me ideas about how to integrate TCP/IP into Elma. He also advised me how to write a gtest for this case.
+
+- Justin Vrana - Gave me the idea about showing print statements from server and client side to show confirmation, in case test case couldn't be written.
+
+- Kung-Hung(Henry)Lu - Helped me with the file structure and make file for server client applications.
+
+References
+===
+Libraries
+---
+- Elma
+- C socket libraries 
+    - sys/types.h
+    - sys/socket.h
+    - netdb.h
+    - netinet/in.h
+Links
+---
+- https://www.geeksforgeeks.org/socket-programming-cc/
+Books
+---
+- Exploring Raspberry PI by Derek Molly
+
+
+
+
 
 
