@@ -19,20 +19,20 @@ class TcpServer {
 public:
 
    //! Constructor
-   //! \param name The port number of the server
+   //! \param port number The port number of the server
    TcpServer(int _port_number);
    
    //! Method to create socket, bind, listen and accept connection from incoming client.
    int listen();
    
    //! Send usually an acknowledgement back to client.
-   //! \param name json message
+   //! \param Json message to be sent
    //! return 0 on successful send.
    int send(json message);
    
    //! Receive message from client.
-   //! \param name Size of the buffer set to read the incoming message
-   //! \return received json message.
+   //! \param Size of the buffer set to read the incoming message
+   //! \return Received json message.
    json receive(int size);
 
    //! Destructor

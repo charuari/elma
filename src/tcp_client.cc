@@ -8,7 +8,7 @@ using namespace std;
 using namespace elma;
 
 //! Initializes client socket and connection status.
-//! \param //! \param name The IP address (localhost in our case) and port number of the server to which client wants to connect to.
+//! \param The IP address (localhost in our case) and port number of the server to which client wants to connect to.
 TcpClient::TcpClient(std::string _server_name, int _port_number) {
 	this->_socketfd = -1;
 	this->server = NULL;
@@ -44,7 +44,7 @@ int TcpClient::connect_to_server(){
 }
 
 //! Send message to server. Json messages are converted into bytes to write into buffer.
-//! \param name json message
+//! \param Json message
 //! return 0 on successful send or error throw.
 int TcpClient::send(json message){
     string output = message.dump();
@@ -60,8 +60,8 @@ int TcpClient::send(json message){
 
 //! Receive message from server usually an acknwledgement or processed data.
 //! Byte messages are converted to strings and then to json.
-//! \param name size of the buffer set to read the incoming message.
-//! \return received json message.
+//! \param Size of the buffer set to read the incoming message.
+//! \return Received json message.
 json TcpClient::receive(int size=1024){
     char read_buffer[size];
     int n = read(this->_socketfd, read_buffer, size);//sizeof(read_buffer));

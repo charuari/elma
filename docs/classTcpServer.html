@@ -131,7 +131,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Constructor </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>The port number of the server</td></tr>
+    <tr><td class="paramname">port</td><td>number The port number of the server</td></tr>
   </table>
   </dd>
 </dl>
@@ -208,18 +208,18 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Receive message from client. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Size of the buffer set to read the incoming message </td></tr>
+    <tr><td class="paramname">Size</td><td>of the buffer set to read the incoming message </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>received json message.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Received json message.</dd></dl>
 <p>Receive message from client. Byte messages are converted to strings and then to json. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Size of the buffer set to read the incoming message. </td></tr>
+    <tr><td class="paramname">Size</td><td>of the buffer set to read the incoming message. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>received json message. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Received json message. </dd></dl>
 
 <p>Definition at line <a class="el" href="tcp__server_8cc_source.html#l00068">68</a> of file <a class="el" href="tcp__server_8cc_source.html">tcp_server.cc</a>.</p>
 
@@ -240,13 +240,13 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Send usually an acknowledgement back to client. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>json message return 0 on successful send.</td></tr>
+    <tr><td class="paramname">Json</td><td>message to be sent return 0 on successful send.</td></tr>
   </table>
   </dd>
 </dl>
 <p>Send usually an acknowledgement back to client. Json messages are converted into bytes to write into buffer. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>json message return 0 on successful send or error throw. </td></tr>
+    <tr><td class="paramname">json</td><td>message return 0 on successful send or error throw. </td></tr>
   </table>
   </dd>
 </dl>
@@ -263,7 +263,7 @@ Public Member Functions</h2></td></tr>
 <!-- start footer part -->
   <hr class="footer"/><address class="footer"><small>
   Developed by <a href="http://klavinslab.org">Eric Klavins</a> for UW ECE P 520<br>
-  Generated on Fri Mar 22 2019 22:23:25 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+  Generated on Fri Mar 22 2019 22:57:13 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
   Doxygen
   </a> 1.8.8
   </small></address>

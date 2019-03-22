@@ -48,7 +48,7 @@ int TcpServer::listen(){
 }
 
 //! Send usually an acknowledgement back to client. Json messages are converted into bytes to write into buffer.
-//! \param name json message
+//! \param json message
 //! return 0 on successful send or error throw.
 int TcpServer::send(json message){
     string output = message.dump();
@@ -63,8 +63,8 @@ int TcpServer::send(json message){
 }
 
 //! Receive message from client. Byte messages are converted to strings and then to json.
-//! \param name Size of the buffer set to read the incoming message.
-//! \return received json message.
+//! \param Size of the buffer set to read the incoming message.
+//! \return Received json message.
 json TcpServer::receive(int size=1024){
     char read_buffer[size];
     int n = read(this->_client_socketfd, read_buffer,size);
