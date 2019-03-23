@@ -3,17 +3,14 @@ Elma_TCP
 
 Elma is an event loop and process manager for embedded and reactive systems. It keeps track of processes, finite state machines, events, and communication channels, executing them at specified frequencies. Currently, processes talk to each other via events, this repository contains methods which describes how Json messages will be send back and forth between processes using TCP/IP protocol.
 
-Installation
-===
-
 The source code for Elma_TCP [is on Github](https://github.com/charuari/elma_TCP).
 
-
-From Dockerhub
+Installation
 ===
 
 To get started, you will need a C++ build environment to compile.
 - git clone https://github.com/charuari/elma_TCP.git
+- cd elma_TCP
 - docker run -v $PWD:/source -it klavins/elma:latest bash
 - make
 
@@ -46,7 +43,7 @@ Simple client server ping
 ---
 This was experimented to see how to integrate the so far stand-a-lone TCP/IP into Elma.
 
-Server and client were derived from abstract base class of Elma process and the update of client process will emit the json message(here, it's just an hello) which is send to be send to server. This event will be watched in the init method with appropriate handler.
+Server and client were derived from abstract base class of Elma process and the update of client process will emit the json message(here, it's just an hello) which is to be send to server. This event will be watched in the init method with appropriate handler.
 
 Similarly, the update of server process will receive the message from client and send back the current time and date as an acknowldegement of the established communication.
 
@@ -54,8 +51,7 @@ Just printing the messages from server and client terminal help us to confirm th
 
 Temperature server
 ---
-Server and client are derived from Elma process base class.
-A helper class is used to generate random temperature and geographic co-ordinates which serves as data to be sent by client to server. This data will be sent from client process update method to server and it is received in the server process update method and the server sends back the count of the data received so far.
+Server and client are derived from Elma process base class. A helper class is used to generate random temperature and geographic co-ordinates which serves as data to be sent by client to server. This data will be sent from client process update method to server and it is received in the server process update method and the server sends back the count of the data received so far.
 
 The random data generator is set with srand(0), for the values to be determinant so that it can be tested in the server side if same data is received. Also, the number of updates of server process is tested for the number of acknowledgements sent back to client.
 
@@ -131,11 +127,14 @@ Results
     - Client pings server with "Hello"
     - Server responds with current date and time.
 
+![Prints from server & client](images/pingimage.png)
+
 - Temperature Server
     - Please find the print statements of messages from client and server side.
     - The length of the data sent from client is tested against the message received by server.
     - Also, the number of updates of server process is tested against the number of acknowledgements sent by server to client.
 
+![Prints from server & client](images/temperatureimage.png)
 
 Acknowledgements
 ===
@@ -144,9 +143,9 @@ A great thanks to the following people!
 
 - Prof.Klavins - He was of a great help for giving me ideas about how to integrate TCP/IP into Elma. He also advised me how to write a gtest for this case.
 
-- Justin Vrana - Gave me the idea about showing print statements from server and client side to show confirmation, in case test case couldn't be written.
+- Justin Vrana - Gave me the idea about showing print statements from server and client side to confirm the established connection, in case test case couldn't be written.
 
-- Kung-Hung(Henry)Lu - Helped me with the file structure and make file for server client applications.
+- Kung-Hung(Henry)Lu - Helped me with the file structure and makefile for server client applications.
 
 References
 ===

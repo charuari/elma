@@ -80,11 +80,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>Elma is an event loop and process manager for embedded and reactive systems. It keeps track of processes, finite state machines, events, and communication channels, executing them at specified frequencies. Currently, processes talk to each other via events, this repository contains methods which describes how Json messages will be send back and forth between processes using TCP/IP protocol.</p>
-<h1>Installation </h1>
 <p>The source code for Elma_TCP <a href="https://github.com/charuari/elma_TCP">is on Github</a>.</p>
-<h1>From Dockerhub </h1>
+<h1>Installation </h1>
 <p>To get started, you will need a C++ build environment to compile.</p><ul>
 <li>git clone <a href="https://github.com/charuari/elma_TCP.git">https://github.com/charuari/elma_TCP.git</a></li>
+<li>cd elma_TCP</li>
 <li>docker run -v $PWD:/source -it klavins/elma:latest bash</li>
 <li>make</li>
 </ul>
@@ -110,7 +110,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>Description </h1>
 <h2>Simple client server ping </h2>
 <p>This was experimented to see how to integrate the so far stand-a-lone TCP/IP into Elma.</p>
-<p>Server and client were derived from abstract base class of Elma process and the update of client process will emit the json message(here, it's just an hello) which is send to be send to server. This event will be watched in the init method with appropriate handler.</p>
+<p>Server and client were derived from abstract base class of Elma process and the update of client process will emit the json message(here, it's just an hello) which is to be send to server. This event will be watched in the init method with appropriate handler.</p>
 <p>Similarly, the update of server process will receive the message from client and send back the current time and date as an acknowldegement of the established communication.</p>
 <p>Just printing the messages from server and client terminal help us to confirm the communication.</p>
 <h2>Temperature server </h2>
@@ -191,6 +191,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Server responds with current date and time.</li>
 </ul>
 </li>
+</ul>
+<div class="image">
+<img src="images/pingimage.png"  alt="Prints from server &amp; client"/>
+</div>
+<ul>
 <li>Temperature Server<ul>
 <li>Please find the print statements of messages from client and server side.</li>
 <li>The length of the data sent from client is tested against the message received by server.</li>
@@ -198,12 +203,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 </li>
 </ul>
+<div class="image">
+<img src="images/temperatureimage.png"  alt="Prints from server &amp; client"/>
+</div>
 <h1>Acknowledgements </h1>
 <p>A great thanks to the following people!</p>
 <ul>
 <li>Prof.Klavins - He was of a great help for giving me ideas about how to integrate TCP/IP into Elma. He also advised me how to write a gtest for this case.</li>
-<li>Justin Vrana - Gave me the idea about showing print statements from server and client side to show confirmation, in case test case couldn't be written.</li>
-<li>Kung-Hung(Henry)Lu - Helped me with the file structure and make file for server client applications.</li>
+<li>Justin Vrana - Gave me the idea about showing print statements from server and client side to confirm the established connection, in case test case couldn't be written.</li>
+<li>Kung-Hung(Henry)Lu - Helped me with the file structure and makefile for server client applications.</li>
 </ul>
 <h1>References </h1>
 <h2>Libraries </h2>
@@ -227,7 +235,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- start footer part -->
   <hr class="footer"/><address class="footer"><small>
   Developed by <a href="http://klavinslab.org">Eric Klavins</a> for UW ECE P 520<br>
-  Generated on Fri Mar 22 2019 22:57:13 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+  Generated on Sat Mar 23 2019 17:49:51 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
   Doxygen
   </a> 1.8.8
   </small></address>
