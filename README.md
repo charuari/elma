@@ -127,14 +127,14 @@ Results
     - Client pings server with "Hello"
     - Server responds with current date and time.
 
-![Prints from server & client](images/pingimage.png)
+![Prints from server & client](https://github.com/charuari/elma_TCP/blob/master/images/pingimage.PNG)
 
 - Temperature Server
     - Please find the print statements of messages from client and server side.
     - The length of the data sent from client is tested against the message received by server.
     - Also, the number of updates of server process is tested against the number of acknowledgements sent by server to client.
 
-![Prints from server & client](images/temperatureimage.png)
+![Prints from server & client](https://github.com/charuari/elma_TCP/blob/master/images/temperatureimage.PNGg)
 
 Acknowledgements
 ===
