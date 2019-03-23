@@ -134,7 +134,7 @@ Results
     - The length of the data sent from client is tested against the message received by server.
     - Also, the number of updates of server process is tested against the number of acknowledgements sent by server to client.
 
-![Prints from server & client](https://github.com/charuari/elma_TCP/blob/master/images/temperatureimage.PNGg)
+![Prints from server & client](https://github.com/charuari/elma_TCP/blob/master/images/temperatureimage.PNG)
 
 Acknowledgements
 ===
