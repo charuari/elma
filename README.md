@@ -34,8 +34,8 @@ To make Elma processes communication via TCP/IP, the first step I decided to do 
 
 
 The goal of this project is to use this in Elma and I had decided to build two examples for it.
-    1. Simple client server ping
-    2. Temperature server
+- Simple client server ping
+- Temperature server
 
 Description
 ===
